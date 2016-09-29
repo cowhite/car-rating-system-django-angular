@@ -23,7 +23,7 @@ class ReviewTests(APITestCase):
 		cl = Client()
 		cl.login(username="testuser", password="12345")
 
-		''' Create Car Make '''
+		''' Create Car Brand '''
 
 		url_carmake = "/cars/make/"
 		data_carmake = {

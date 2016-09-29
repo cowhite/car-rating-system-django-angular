@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import CarModel, CarMake, CarDetail, CarReview
-from .serializers import CarModelSerializer, CarMakeSerializer, CarDetailSerializer, CarReviewSerializer
+from .models import CarModel, CarBrand, CarVariant, CarVariantReview
+from .serializers import CarModelSerializer, CarBrandSerializer, CarVariantSerializer, CarVariantReviewSerializer
 from django.views.generic import TemplateView
 from rest_framework.permissions import IsAuthenticated
 
@@ -26,40 +26,40 @@ class CarModelView(CarModelMixin, generics.RetrieveUpdateDestroyAPIView):
 
 
 
-class CarMakeMixin(object):
+class CarBrandMixin(object):
     """Mixin to define get_queryset on views that have to do with tickets"""
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        carmake = CarMake.objects.all()
+        carmake = CarBrand.objects.all()
         return carmake
 
 
-class CarMakeView(CarMakeMixin, generics.ListCreateAPIView):
-    queryset = CarMake.objects.all()
-    serializer_class = CarMakeSerializer
+class CarBrandView(CarBrandMixin, generics.ListCreateAPIView):
+    queryset = CarBrand.objects.all()
+    serializer_class = CarBrandSerializer
 
 
-class CarDetailMixin(object):
+class CarVariantMixin(object):
     """Mixin to define get_queryset on views that have to do with tickets"""
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        cars = CarDetail.objects.all()
+        cars = CarVariant.objects.all()
         return cars
 
 
-class CarsDetailView(CarDetailMixin, generics.ListCreateAPIView):
-    queryset = CarDetail.objects.all()
-    serializer_class = CarDetailSerializer
+class CarsVariantView(CarVariantMixin, generics.ListCreateAPIView):
+    queryset = CarVariant.objects.all()
+    serializer_class = CarVariantSerializer
 
 
-class CarDetailView(CarDetailMixin, generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = CarDetailSerializer
+class CarVariantView(CarVariantMixin, generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = CarVariantSerializer
 
 
-class CarReviewView(generics.ListCreateAPIView):
+class CarVariantReviewView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
 	
-    queryset = CarReview.objects.all()
-    serializer_class = CarReviewSerializer
+    queryset = CarVariantReview.objects.all()
+    serializer_class = CarVariantReviewSerializer

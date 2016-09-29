@@ -1,30 +1,30 @@
 from rest_framework import serializers
-from .models import CarModel, CarMake, CarDetail, CarReview
+from .models import CarModel, CarBrand, CarVariant, CarVariantReview
 
 
 class CarModelSerializer(serializers.ModelSerializer):
-	car_make = serializers.SerializerMethodField()
+	car_brand = serializers.SerializerMethodField()
 
 	class Meta:
 		model = CarModel
 
 
-	def get_car_make(self, obj):
+	def get_car_brand(self, obj):
 		# import ipdb; ipdb.set_trace()
-		return obj.make.name
+		return obj.brand.name
 
 
-class CarMakeSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = CarMake
-
-class CarReviewSerializer(serializers.ModelSerializer):
+class CarBrandSerializer(serializers.ModelSerializer):
 
 	class Meta:
-		model = CarReview
+		model = CarBrand
 
-class CarDetailSerializer(serializers.ModelSerializer):
+class CarVariantReviewSerializer(serializers.ModelSerializer):
 
 	class Meta:
-		model = CarDetail
+		model = CarVariantReview
+
+class CarVariantSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = CarVariant
