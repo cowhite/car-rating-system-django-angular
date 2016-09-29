@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import CarModel, CarMake, CarDetail
-from .serializers import CarModelSerializer, CarMakeSerializer, CarDetailSerializer
+from .models import CarModel, CarMake, CarDetail, CarReview
+from .serializers import CarModelSerializer, CarMakeSerializer, CarDetailSerializer, CarReviewSerializer
 from django.views.generic import TemplateView
 from rest_framework.permissions import IsAuthenticated
 
@@ -56,3 +56,10 @@ class CarsDetailView(CarDetailMixin, generics.ListCreateAPIView):
 
 class CarDetailView(CarDetailMixin, generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CarDetailSerializer
+
+
+class CarReviewView(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
+	
+    queryset = CarReview.objects.all()
+    serializer_class = CarReviewSerializer
