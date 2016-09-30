@@ -33,7 +33,7 @@ class CarVariant(DateTimeBase):
     	return u"%s %s %s" % (self.brand.name, self.name, self.model.name)
 
 
-class CarVariantReview(models.Model):
+class CarVariantReview(DateTimeBase):
     variant = models.ForeignKey(CarVariant)
     review = models.TextField(blank=True, null=True)
     rating = models.DecimalField(max_digits=2, decimal_places=1, choices=RATE_CHOICES)
