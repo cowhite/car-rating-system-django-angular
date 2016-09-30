@@ -25,45 +25,50 @@ class ReviewTests(APITestCase):
 
 		''' Create Car Brand '''
 
-		url_carmake = "/cars/make/"
-		data_carmake = {
+		url_carbrand = "/cars/brand/"
+		data_carbrand = {
 		"name": "Audi"
 		}
-		res_carmake = cl.post(url_carmake, data=data_carmake, format="json")
+		res_carbrand = cl.post(url_carbrand, data=data_carbrand, format="json")
 		# import ipdb; ipdb.set_trace()
-		self.assertEqual(res_carmake.status_code, 201)
+		self.assertEqual(res_carbrand.status_code, 201)
 
 		''' Create Car Model '''
 
 		url_carmodel = "/cars/models/"
 		data_carmodel = {
-        "model": "R8",
-        "image": '',
-        "make": 1
+        "name": "R8",
+        "brand": 1
     	}
 		res_carmodel = cl.post(url_carmodel, data=data_carmodel, format="json")
 		# import ipdb; ipdb.set_trace()
 		self.assertEqual(res_carmodel.status_code, 201)
 
 
+		''' Create Car Variant '''
+
+		url_carvariant = "/cars/variant/"
+		data_carvariant = {
+        "image": '',
+        "name": "Spyder",
+        "model": 1,
+        "brand": 1
+    	}
+		res_carvariant = cl.post(url_carvariant, data=data_carvariant, format="json")
+		# import ipdb; ipdb.set_trace()
+		self.assertEqual(res_carvariant.status_code, 201)
+
 		''' Create Car Review '''
 
 		url_carreview = "/cars/review/"
 		data_carreview = {
-        "review": "Audi Review",
-        "rating": 4
+        "review": "The new R8 Spyder comes to market with the fabulous, naturally aspirated 5.2-liter V-10, rated at 540 horsepower and 398 lb-ft of torque. The high-revving engine can play the entire range from a dark growl to a piercing howl.",
+        "rating": 4,
+        "variant": 1,
+        "review_by": 1
     	}
 		res_carreview = cl.post(url_carreview, data=data_carreview, format="json")
 		# import ipdb; ipdb.set_trace()
 		self.assertEqual(res_carreview.status_code, 201)
 
-		''' Create Car Details '''
-
-		url_cardetails = "/cars/details/"
-		data_cardetails = {
-        "car": 1,
-        "review": 1
-    	}
-		res_cardetails = cl.post(url_cardetails, data=data_cardetails, format="json")
-		# import ipdb; ipdb.set_trace()
-		self.assertEqual(res_cardetails.status_code, 201)
+		
