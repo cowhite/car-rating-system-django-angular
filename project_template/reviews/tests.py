@@ -25,7 +25,7 @@ class ReviewTests(APITestCase):
 
 		''' Create Car Brand '''
 
-		url_carbrand = "/cars/brand/"
+		url_carbrand = "api/cars/brand/"
 		data_carbrand = {
 		"name": "Audi"
 		}
@@ -35,7 +35,7 @@ class ReviewTests(APITestCase):
 
 		''' Create Car Model '''
 
-		url_carmodel = "/cars/models/"
+		url_carmodel = "api/cars/models/"
 		data_carmodel = {
         "name": "R8",
         "brand": 1
@@ -47,7 +47,7 @@ class ReviewTests(APITestCase):
 
 		''' Create Car Variant '''
 
-		url_carvariant = "/cars/variant/"
+		url_carvariant = "api/cars/variant/"
 		data_carvariant = {
         "image": '',
         "name": "Spyder",
@@ -60,7 +60,7 @@ class ReviewTests(APITestCase):
 
 		''' Create Car Review '''
 
-		url_carreview = "/cars/review/"
+		url_carreview = "api/cars/review/"
 		data_carreview = {
         "review": "The new R8 Spyder comes to market with the fabulous, naturally aspirated 5.2-liter V-10, rated at 540 horsepower and 398 lb-ft of torque. The high-revving engine can play the entire range from a dark growl to a piercing howl.",
         "rating": 4,
