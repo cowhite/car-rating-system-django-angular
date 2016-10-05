@@ -35,8 +35,12 @@ class CarBrandMixin(object):
         return carmake
 
 
-class CarBrandView(CarBrandMixin, generics.ListCreateAPIView):
+class CarBrandsView(CarBrandMixin, generics.ListCreateAPIView):
     queryset = CarBrand.objects.all()
+    serializer_class = CarBrandSerializer
+
+
+class CarBrandView(CarBrandMixin, generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CarBrandSerializer
 
 
