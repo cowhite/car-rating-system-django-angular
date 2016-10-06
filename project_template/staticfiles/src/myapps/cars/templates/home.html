@@ -87,48 +87,49 @@
     </div>
   <div layout="column" ng-cloak>
   <md-content class="md-padding">
-    <form ng-submit="$event.preventDefault()">
-    <div layout-gt-sm="row">
+    <form ng-submit="$event.preventDefault()" name="carSearchForm">
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
       <md-autocomplete
           ng-disabled="vm.isDisabled"
           md-no-cache="vm.noCache"
           md-selected-item="vm.selectedBrand"
-          md-search-text-change="vm.searchTextChange(vm.searchText)"
-          md-search-text="vm.searchText"
+          md-search-text-change="vm.searchTextChange(vm.searchBrand)"
+          md-search-text="vm.searchBrand"
           md-selected-item-change="vm.selectedItemChange(item)"
-          md-items="item in vm.querySearch(vm.searchText, 'brand')"
+          md-items="item in vm.querySearch(vm.searchBrand, 'brand')"
           md-item-text="item.name"
           md-min-length="0"
           placeholder="Car Brand">
         <md-item-template>
-          <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{item.name}}</span>
+          <span md-highlight-text="vm.searchBrand" md-highlight-flags="^i">{{item.name}}</span>
         </md-item-template>
         <md-not-found>
-          No states matching "{{vm.searchText}}" were found.
-          <a ng-click="vm.newState(vm.searchText)">Create a new one!</a>
+          No Cars matching "{{vm.searchBrand}}" were found.
+          <a ng-click="vm.newState(vm.searchBrand)">Create a new one!</a>
         </md-not-found>
       </md-autocomplete>
       <md-autocomplete
           ng-disabled="vm.isDisabled"
           md-no-cache="vm.noCache"
           md-selected-item="vm.selectedModel"
-          md-search-text-change="vm.searchTextChange(vm.searchText)"
-          md-search-text="vm.searchText"
+          md-search-text-change="vm.searchTextChange(vm.searchModel)"
+          md-search-text="vm.searchModel"
           md-selected-item-change="vm.selectedItemChange(item)"
-          md-items="item in vm.querySearch(vm.searchText, 'model')"
+          md-items="item in vm.querySearch(vm.searchModel, 'model')"
           md-item-text="item.name"
           md-min-length="0"
           placeholder="Car Model">
         <md-item-template>
-          <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{item.name}}</span>
+          <span md-highlight-text="vm.searchModel" md-highlight-flags="^i">{{item.name}}</span>
         </md-item-template>
         <md-not-found>
-          No states matching "{{vm.searchText}}" were found.
-          <a ng-click="vm.newState(vm.searchText)">Create a new one!</a>
+          No models matching "{{vm.searchBrand}}" were found.
+          <a ng-click="vm.newState(vm.searchModel)">Create a new one!</a>
         </md-not-found>
       </md-autocomplete>
       <br/>
-      </div>
+      <md-button class="md-raised md-primary" ng-click="vm.searchVariant(vm.selectedBrand.name, vm.selectedModel.name)" ng-disabled="carSearchForm.$invalid || carSearchForm.$pristine">Search</md-button>
+      </section>
     </form>
   </md-content>
 </div>
@@ -149,20 +150,6 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <img src="static/media/cars/5824.jpg" width="100%">
-                <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
-            </div>
-            <div class="col-md-4">
-                <img src="static/media/cars/5824.jpg" width="100%">
-                <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
-            </div>
-            <div class="col-md-4">
-                <img src="static/media/cars/5824.jpg" width="100%">
-                <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p> 
-            </div>
-        </div>
     </div>
 
   

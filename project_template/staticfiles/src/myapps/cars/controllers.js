@@ -12,10 +12,11 @@
 
     // list of `car` value/display objects
     vm.cars        = loadBrands();
-    vm.models      = loadModels();
+    vm.models      = [];
     vm.querySearch   = querySearch;
     vm.selectedItemChange = selectedItemChange;
     vm.searchTextChange   = searchTextChange;
+    vm.searchVariant      = searchVariant;
 
     vm.newCar = newCar;
 
@@ -26,14 +27,18 @@
     // ******************************
     // Internal methods
     // ******************************
-
+    function searchVariant(brand, model) {
+      var variant = carsService.getVariant(brand, model).then(function(response){
+        return response.data;
+      })
+    }
     /**
      * Search for cars... use $timeout to simulate
      * remote dataservice call.
      */
     function querySearch (query, qtype) {
       if (qtype=='brand'){
-      var results = query ? vm.cars.filter( createFilterFor(query) ) : vm.cars,
+      var results = vm.cars,
           deferred;
       if (vm.simulateQuery) {
         deferred = $q.defer();
@@ -44,7 +49,8 @@
       }
     }
       if (qtype=='model'){
-      var results = query ? vm.cars.filter( createFilterFor(query) ) : vm.cars,
+      vm.models      = loadModels(vm.selectedBrand.name);
+      var results = vm.models,
           deferred;
       if (vm.simulateQuery) {
         deferred = $q.defer();
@@ -86,14 +92,16 @@
 
     function loadBrands() {
       var allCars = carsService.getBrands().then(function(response){
-        debugger;
-      })
+        return response.data;
+      });
+      return allCars;
     }
 
-    function loadModels() {
-      var allCars = carsService.getModels(brand).then(function(response){
-        debugger;
-      })
+    function loadModels(brand=undefined) {
+      var allModels = carsService.getModels(brand).then(function(response){
+        return response.data;
+      });
+      return allModels;
     }
 
     /**

@@ -41,16 +41,29 @@ angular.module('carsservice', [])
         },
 
         getModels : function(brand){
+          if (brand==undefined) {
+            return;
+          }
           return $http({
             method : 'GET',
             url    : 'api/cars/models/?q=' + brand
           })
         },
 
+        getVariant : function(brand, model){
+          if (brand==undefined || model==undefined) {
+            return;
+          }
+          return $http({
+            method : 'GET',
+            url    : 'api/cars/variant/?brand=' + brand + '&model=' + model
+          })
+        },
+
         getJobCategories : function(q){
           return $http({
             method : 'GET',
-            url    : 'api/resumes/car-category-autocomplete/?q=' + q
+            url    : 'api/cars/car-models-autocomplete/?q=' + q
           })
         },
 
