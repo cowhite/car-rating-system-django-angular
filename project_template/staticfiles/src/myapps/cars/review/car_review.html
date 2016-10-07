@@ -1,7 +1,7 @@
 <md-dialog class="compose-dialog" aria-label="New Ticket">
 <md-toolbar class="md-accent md-hue-2">
             <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <span ng-if="vm.car.name">{{vm.car.variant_name}}</span>
+                <span ng-if="vm.car.variant_name">{{vm.car.variant_name}}</span>
                 <span ng-if="carVariant.name">{{carVariant.name}}</span>
                 <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog" tranlate
                            translate-aria-label="MAIL.CLOSE_DIALOG">
@@ -13,11 +13,23 @@
         <img ng-if="vm.car.image" src="static/media/{{vm.car.image}}" width="100%">
         <img ng-if="carVariant.image" src="{{carVariant.image}}" width="100%">
         <h4>Rating</h4>
-        <div ng-init="rating = star.rating + 1"></div>
+        <div layout="row" layout-align="start center">
+            <div ng-init="rating = star.rating + 1"></div>
+        </div>
         <div class="star-rating" star-rating rating-value="rating" data-max="10" on-rating-selected="rateFunction(rating)"></div>
         <h4>Review</h4>
         
         <p>{{carReview.review}}</p>
         <p>{{vm.car.review}}</p>
     </md-dialog-content>
+    <md-dialog-actions div layout="row" layout-align="end center">
+            <div layout="row" layout-align="start center">
+                <md-button type="submit" ng-click="vm.addReview()"
+                           class="send-button md-accent md-raised"
+                           aria-label="ADD REVIEW">
+                    Add Review
+                </md-button>
+
+            </div>
+        </md-dialog-actions>
 </md-dialog>
