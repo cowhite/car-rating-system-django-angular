@@ -135,27 +135,13 @@
 </div>
 
     <div>
-        <div class="row">
-            <div class="col-md-4">
-                <img src="static/media/cars/5824.jpg" width="100%">
-                <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
-            </div>
-            <div class="col-md-4">
-                <img src="static/media/cars/5824.jpg" width="100%">
-                <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
-            </div>
-            <div class="col-md-4">
-                <img src="static/media/cars/5824.jpg" width="100%">
-                <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum {{vm.cars | json}}</p> 
-            </div>
-        </div>
 
         <div class="row">
-            <div class="col-md-4" ng-repeat="car in vm.newCars">
-                {{car.name}}
-                <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
+            <div ng-click="vm.carReviewDialog($event, car)" class="col-md-4" ng-repeat="car in newCars">
+                <img src="static/media/{{car.image}}" width="100%">
+                <h3>{{car.variant_name}}</h3>
+                <p>{{car.review}}</p>
             </div>
-            <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
         </div>
     </div>
 

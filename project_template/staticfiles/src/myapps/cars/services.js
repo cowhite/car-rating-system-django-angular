@@ -30,12 +30,26 @@ angular.module('carsservice', [])
           })
         },
 
-        getCars : function(){
+        getAllVariants : function(){
           return $http({
             method : 'GET',
             url    : 'api/cars/variant'
           })
         },
+
+        getCarReview : function(variant){
+          return $http({
+            method : 'GET',
+            url    : 'api/cars/review/'+ variant.id
+          })
+        },
+
+        getAllCars : function(){
+          return $http({
+            method : 'GET',
+            url    : 'api/cars/review/'
+          })
+        }
 
 
       }

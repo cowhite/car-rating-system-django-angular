@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^brand/$', CarBrandsView.as_view(), name="car_brand"),
     url(r'^brand/(?P<pk>\d+)/?$', CarBrandView.as_view()),
     url(r'^variant/$', CarsVariantView.as_view()),
-    url(r'^review/$', CarVariantReviewView.as_view()),
+    url(r'^review/$', CarVariantsReviewView.as_view()),
+    url(r'^review/(?P<pk>\d+)/?$', CarVariantReviewView.as_view()),    
 
 ]

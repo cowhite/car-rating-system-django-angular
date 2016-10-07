@@ -9,7 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 class CarModelMixin(object):
     """Mixin to define get_queryset on views that have to do with tickets"""
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
     def get_queryset(self, *args, **kwargs):
         # import ipdb; ipdb.set_trace()
@@ -37,7 +37,7 @@ class CarModelView(CarModelMixin, generics.RetrieveUpdateDestroyAPIView):
 
 class CarBrandMixin(object):
     """Mixin to define get_queryset on views that have to do with tickets"""
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         carmake = CarBrand.objects.all()
@@ -55,7 +55,7 @@ class CarBrandView(CarBrandMixin, generics.RetrieveUpdateDestroyAPIView):
 
 class CarVariantMixin(object):
     """Mixin to define get_queryset on views that have to do with tickets"""
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
     def get_queryset(self, *args, **kwargs):
         brand = None;
@@ -81,8 +81,13 @@ class CarVariantView(CarVariantMixin, generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CarVariantSerializer
 
 
-class CarVariantReviewView(generics.ListCreateAPIView):
-    permission_classes = (IsAuthenticated,)
+class CarVariantsReviewView(generics.ListCreateAPIView):
+    # permission_classes = (IsAuthenticated,)
 	
+    queryset = CarVariantReview.objects.all()
+    serializer_class = CarVariantReviewSerializer
+
+
+class CarVariantReviewView(generics.RetrieveUpdateDestroyAPIView):
     queryset = CarVariantReview.objects.all()
     serializer_class = CarVariantReviewSerializer

@@ -4,7 +4,7 @@
       .module('homecontrollers', ['ngMaterial'])
       .controller('HomeCtrl', HomeCtrl);
 
-  function HomeCtrl ($timeout, $q, $log, carsService, $mdDialog, $document) {
+  function HomeCtrl ($scope, $timeout, $q, $log, carsService, $mdDialog, $document) {
     var vm = this;
 
     vm.simulateQuery = false;
@@ -14,12 +14,8 @@
     vm.cars        = loadBrands();
     vm.models      = [];
     vm.querySearch   = querySearch;
-    vm.newCars     = carsService.getCars().then(function(response){
-      return response.data;
-    });
     vm.selectedItemChange = selectedItemChange;
     vm.searchTextChange   = searchTextChange;
-    vm.searchVariant      = searchVariant;
     vm.carReviewDialog    = carReviewDialog;
 
     vm.newCar = newCar;
@@ -31,11 +27,11 @@
     // ******************************
     // Internal methods
     // ******************************
-    function searchVariant(brand, model) {
-      var variant = carsService.getVariant(brand, model).then(function(response){
-        return response.data;
-      })
-    }
+      carsService.getAllCars().then(function(response){
+        $scope.newCars = response.data;
+      }).catch(function() {
+    $scope.error = 'unable to get the cars';
+  });
     /**
      * Search for cars... use $timeout to simulate
      * remote dataservice call.
@@ -120,14 +116,15 @@
 
     }
 
-    function carReviewDialog(ev)
+    function carReviewDialog(ev, car=undefined)
         {
             $mdDialog.show({
                 controller         : 'CarReviewController',
                 controllerAs       : 'vm',
                 locals             : {
                     selectedBrand  : vm.selectedBrand,
-                    selectedModel  : vm.selectedModel
+                    selectedModel  : vm.selectedModel,
+                    car            : car
                 },
                 templateUrl: "/static/src/myapps/cars/review/car_review.html",
                 parent             : angular.element($document.body),
