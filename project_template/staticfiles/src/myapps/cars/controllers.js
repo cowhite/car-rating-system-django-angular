@@ -4,7 +4,7 @@
       .module('homecontrollers', ['ngMaterial'])
       .controller('HomeCtrl', HomeCtrl);
 
-  function HomeCtrl ($timeout, $q, $log, carsService) {
+  function HomeCtrl ($timeout, $q, $log, carsService, $mdDialog, $document) {
     var vm = this;
 
     vm.simulateQuery = false;
@@ -14,9 +14,13 @@
     vm.cars        = loadBrands();
     vm.models      = [];
     vm.querySearch   = querySearch;
+    vm.newCars     = carsService.getCars().then(function(response){
+      return response.data;
+    });
     vm.selectedItemChange = selectedItemChange;
     vm.searchTextChange   = searchTextChange;
     vm.searchVariant      = searchVariant;
+    vm.carReviewDialog    = carReviewDialog;
 
     vm.newCar = newCar;
 
@@ -115,5 +119,25 @@
       };
 
     }
+
+    function carReviewDialog(ev)
+        {
+            $mdDialog.show({
+                controller         : 'CarReviewController',
+                controllerAs       : 'vm',
+                locals             : {
+                    selectedBrand  : vm.selectedBrand,
+                    selectedModel  : vm.selectedModel
+                },
+                templateUrl: "/static/src/myapps/cars/review/car_review.html",
+                parent             : angular.element($document.body),
+                targetEvent        : ev,
+                clickOutsideToClose: true
+            }).then(function (response)
+            {
+              
+            });
+            
+        }
   }
 })();

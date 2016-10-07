@@ -1,0 +1,21 @@
+<md-dialog class="compose-dialog" aria-label="New Ticket">
+<md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span>{{vm.name}}</span>
+                <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog" tranlate
+                           translate-aria-label="MAIL.CLOSE_DIALOG">
+                    <md-icon md-font-icon="icon-close"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+    <md-dialog-content ms-scroll>
+                <img src="static/media/cars/5824.jpg" width="100%">
+                <h4>Review</h4>
+                <div ng-init="rating = star.rating + 1"></div>
+
+<div class="star-rating" star-rating rating-value="rating"
+
+ data-max="10" on-rating-selected="rateFunction(rating)"></div>
+                <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum {{vm.cars | json}}</p> 
+                </md-dialog-content>
+</md-dialog>
