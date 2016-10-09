@@ -13,23 +13,38 @@
         <img ng-if="vm.car.image" src="static/media/{{vm.car.image}}" width="100%">
         <img ng-if="carVariant.image" src="{{carVariant.image}}" width="100%">
         <h4>Rating</h4>
-        <div layout="row" layout-align="start center">
-            <div ng-init="rating = star.rating + 1"></div>
-        </div>
+        <div ng-init="rating = star.rating + 1"></div>
         <div class="star-rating" star-rating rating-value="rating" data-max="10" on-rating-selected="rateFunction(rating)"></div>
         <h4>Review</h4>
         
         <p>{{carReview.review}}</p>
         <p>{{vm.car.review}}</p>
+
+         <md-button type="submit" ng-click="vm.addReview()"
+                           class="send-button md-accent md-raised"
+                           aria-label="ADD REVIEW">
+                    Add Review
+                </md-button>
+        <form name="newReviwForm" ng-show="vm.showReview">
+  <div class="form-group">
+  <label for="comment">Comment:</label>
+  <textarea class="form-control" rows="5" id="comment"></textarea>
+</div>
+  <md-button type="submit" ng-click="vm.saveReview()"
+                           class="send-button md-accent md-raised"
+                           aria-label="SAVE REVIEW">
+                    Save Review
+                </md-button>
+</form>
     </md-dialog-content>
     <md-dialog-actions div layout="row" layout-align="end center">
             <div layout="row" layout-align="start center">
-                <md-button type="submit" ng-click="vm.addReview()"
+                <md-button type="submit" ng-click="vm.addReview($event)"
                            class="send-button md-accent md-raised"
                            aria-label="ADD REVIEW">
                     Add Review
                 </md-button>
 
             </div>
-        </md-dialog-actions>
+    </md-dialog-actions>
 </md-dialog>

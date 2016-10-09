@@ -9,11 +9,7 @@
 function starRating() {
 return {
 restrict : 'A',
-template : '<ul class="rating">'
-   + ' <li ng-repeat="star in stars" ng-class="star" ng-click="toggle($index)">'
-   + '  <i class="fa fa-star-o"></i>'
-   + ' </li>'
-   + '</ul>',
+template :'  <i ng-repeat="star in stars" ng-class="star" ng-click="toggle($index)" class="fa fa-star-o"></i>',
 scope : {
  ratingValue : '=',
  max : '=',
@@ -50,12 +46,15 @@ link : function(scope, elem, attrs) {
 
 
     /** @ngInject */
-    function CarReviewController($scope, $mdDialog, carsService, $log, car, selectedBrand, selectedModel)
+    function CarReviewController($scope, $mdDialog, $document, carsService, $log, car, selectedBrand, selectedModel)
     {
         var vm = this;
         vm.car = car;
+        vm.addReview     = addReview;
+        vm.saveReview    = saveReview;
         vm.selectedModel = selectedModel;
         vm.selectedBrand = selectedBrand;
+        vm.review        = [];
         if (selectedBrand) {
         carsService.getVariant(selectedBrand.name, selectedModel.name).then(
           function(response){
@@ -70,5 +69,16 @@ link : function(scope, elem, attrs) {
     $scope.error = 'unable to get the cars';
   });
         }
+
+
+        function addReview() {
+        vm.showReview = true;
+      }
+
+      function saveReview() {
+        vm.showReview = false;
+      }
+
+
     }
 })();

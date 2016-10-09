@@ -1,0 +1,9 @@
+<form name="newReviwForm">
+  <md-input-container>
+    <label>Review</label>
+    <input name="carReview" ng-model="vm.review" required>
+    <div ng-messages="newReviewForm.carReview.$error">
+      <div ng-message="required">This is required!</div>
+    </div>
+  </md-input-container>
+</form>

@@ -135,6 +135,28 @@
               
             });
             
+        };
+
+
+    function carReview(ev)
+        {
+            $mdDialog.show({
+                controller         : 'CarReviewController',
+                controllerAs       : 'vm',
+                locals             : {
+                    selectedBrand  : vm.selectedBrand,
+                    selectedModel  : vm.selectedModel,
+                    car            : car
+                },
+                templateUrl: "/static/src/myapps/cars/review/car_review.html",
+                parent             : angular.element($document.body),
+                targetEvent        : ev,
+                clickOutsideToClose: true
+            }).then(function (response)
+            {
+              
+            });
+            
         }
   }
 })();
