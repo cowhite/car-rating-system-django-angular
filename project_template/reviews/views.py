@@ -3,13 +3,13 @@ from rest_framework import generics
 from .models import CarModel, CarBrand, CarVariant, CarVariantReview
 from .serializers import CarModelSerializer, CarBrandSerializer, CarVariantSerializer, CarVariantReviewSerializer
 from django.views.generic import TemplateView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 # Create your views here.
 class CarModelMixin(object):
     """Mixin to define get_queryset on views that have to do with tickets"""
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self, *args, **kwargs):
         # import ipdb; ipdb.set_trace()
@@ -37,7 +37,7 @@ class CarModelView(CarModelMixin, generics.RetrieveUpdateDestroyAPIView):
 
 class CarBrandMixin(object):
     """Mixin to define get_queryset on views that have to do with tickets"""
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
         carmake = CarBrand.objects.all()
@@ -55,7 +55,7 @@ class CarBrandView(CarBrandMixin, generics.RetrieveUpdateDestroyAPIView):
 
 class CarVariantMixin(object):
     """Mixin to define get_queryset on views that have to do with tickets"""
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self, *args, **kwargs):
         brand = None;
@@ -82,12 +82,21 @@ class CarVariantView(CarVariantMixin, generics.RetrieveUpdateDestroyAPIView):
 
 
 class CarVariantsReviewView(generics.ListCreateAPIView):
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 	
     queryset = CarVariantReview.objects.all()
     serializer_class = CarVariantReviewSerializer
 
 
+    def perform_create(self, serializer):
+        user = self.request.user
+        serializer.save(review_by=user)
+
+
 class CarVariantReviewView(generics.RetrieveUpdateDestroyAPIView):
     queryset = CarVariantReview.objects.all()
     serializer_class = CarVariantReviewSerializer
+
+    def perform_create(self, serializer):
+        user = self.request.user
+        serializer.save(review_by=user)

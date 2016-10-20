@@ -77,6 +77,14 @@ link : function(scope, elem, attrs) {
 
       function saveReview() {
         vm.showReview = false;
+        var review = {
+          'rating': 4,
+          'review' : vm.review, 
+          'variant': vm.car.id,
+        }
+        carsService.postReview(review).then(function(response){
+
+        })
       }
 
 

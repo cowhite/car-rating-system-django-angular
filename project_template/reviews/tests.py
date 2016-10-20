@@ -2,6 +2,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from rest_framework.test import APITestCase
 from django.test import Client
+from rest_framework.test import APIClient
 from .models import *
 from .views import *
 import json
@@ -25,7 +26,7 @@ class ReviewTests(APITestCase):
 
 		''' Create Car Brand '''
 
-		url_carbrand = "api/cars/brand/"
+		url_carbrand = "/api/cars/brand/"
 		data_carbrand = {
 		"name": "Audi"
 		}
@@ -35,7 +36,7 @@ class ReviewTests(APITestCase):
 
 		''' Create Car Model '''
 
-		url_carmodel = "api/cars/models/"
+		url_carmodel = "/api/cars/models/"
 		data_carmodel = {
         "name": "R8",
         "brand": 1
@@ -47,7 +48,7 @@ class ReviewTests(APITestCase):
 
 		''' Create Car Variant '''
 
-		url_carvariant = "api/cars/variant/"
+		url_carvariant = "/api/cars/variant/"
 		data_carvariant = {
         "image": '',
         "name": "Spyder",
@@ -60,7 +61,7 @@ class ReviewTests(APITestCase):
 
 		''' Create Car Review '''
 
-		url_carreview = "api/cars/review/"
+		url_carreview = "/api/cars/review/"
 		data_carreview = {
         "review": "The new R8 Spyder comes to market with the fabulous, naturally aspirated 5.2-liter V-10, rated at 540 horsepower and 398 lb-ft of torque. The high-revving engine can play the entire range from a dark growl to a piercing howl.",
         "rating": 4,
@@ -71,4 +72,4 @@ class ReviewTests(APITestCase):
 		# import ipdb; ipdb.set_trace()
 		self.assertEqual(res_carreview.status_code, 201)
 
-		
+			

@@ -37,7 +37,7 @@ class CarVariantReview(DateTimeBase):
     variant = models.ForeignKey(CarVariant)
     review = models.TextField(blank=True, null=True)
     rating = models.DecimalField(max_digits=2, decimal_places=1, choices=RATE_CHOICES)
-    review_by = models.ForeignKey(User)
+    review_by = models.ForeignKey(User, blank=True, null=True)
 
     def __unicode__(self):
     	return u"%s" %self.variant

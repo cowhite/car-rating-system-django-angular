@@ -25,8 +25,12 @@ class CarVariantReviewSerializer(serializers.ModelSerializer):
 	variant_name = serializers.SerializerMethodField()
 	image = serializers.SerializerMethodField()
 
+
+
 	class Meta:
 		model = CarVariantReview
+		fields = '__all__'
+        read_only_fields = ('review_by', )
 
 	def get_brand_name(self, obj):
 		# import ipdb; ipdb.set_trace()

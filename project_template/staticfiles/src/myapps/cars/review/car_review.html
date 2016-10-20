@@ -27,8 +27,8 @@
                 </md-button>
         <form name="newReviwForm" ng-show="vm.showReview">
   <div class="form-group">
-  <label for="comment">Comment:</label>
-  <textarea class="form-control" rows="5" id="comment"></textarea>
+  <label for="review">Review:</label>
+  <textarea class="form-control" rows="5" id="comment" ng-model=vm.review></textarea>
 </div>
   <md-button type="submit" ng-click="vm.saveReview()"
                            class="send-button md-accent md-raised"
@@ -37,14 +37,4 @@
                 </md-button>
 </form>
     </md-dialog-content>
-    <md-dialog-actions div layout="row" layout-align="end center">
-            <div layout="row" layout-align="start center">
-                <md-button type="submit" ng-click="vm.addReview($event)"
-                           class="send-button md-accent md-raised"
-                           aria-label="ADD REVIEW">
-                    Add Review
-                </md-button>
-
-            </div>
-    </md-dialog-actions>
 </md-dialog>

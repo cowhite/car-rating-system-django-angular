@@ -18,12 +18,6 @@
     vm.searchTextChange   = searchTextChange;
     vm.carReviewDialog    = carReviewDialog;
 
-    vm.newCar = newCar;
-
-    function newCar(car) {
-      alert("Sorry! You'll need to create a Constitution for " + car + " first!");
-    }
-
     // ******************************
     // Internal methods
     // ******************************

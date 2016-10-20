@@ -49,6 +49,14 @@ angular.module('carsservice', [])
             method : 'GET',
             url    : 'api/cars/review/'
           })
+        },
+
+        postReview : function(data){
+          return $http({
+            method : 'POST',
+            url    : 'api/cars/review/',
+            data   : data
+          })
         }
 
 
