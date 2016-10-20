@@ -6,6 +6,6 @@ install:
     - "pip install -r project_template/requirements.txt"
     - "pip install coverage coveralls"
 
-script: coverage run project_template/manage.py test articles
+script: coverage run project_template/manage.py test reviews
 
 after_success: coveralls
