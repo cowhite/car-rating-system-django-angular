@@ -10,15 +10,16 @@
             </div>
         </md-toolbar>
     <md-dialog-content ms-scroll>
-        <img ng-if="vm.car.image" src="static/media/{{vm.car.image}}" width="100%">
+        <img ng-if="vm.car.image" src="{{vm.car.image}}" width="100%">
         <img ng-if="carVariant.image" src="{{carVariant.image}}" width="100%">
         <h4>Rating</h4>
         <div ng-init="rating = star.rating + 1"></div>
         <div class="star-rating" star-rating rating-value="rating" data-max="10" on-rating-selected="rateFunction(rating)"></div>
         <h4>Review</h4>
-        
-        <p>{{carReview.review}}</p>
-        <p>{{vm.car.review}}</p>
+        <div ng-repeat="review in carReview">
+          <p >{{review.review}}</p>
+        </div>
+        <p ng-repeat="review in vm.car.car_reviews">{{review}}</p>
 
          <md-button type="submit" ng-click="vm.addReview()"
                            class="send-button md-accent md-raised"

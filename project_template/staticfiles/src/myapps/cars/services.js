@@ -40,7 +40,7 @@ angular.module('carsservice', [])
         getCarReview : function(variant){
           return $http({
             method : 'GET',
-            url    : 'api/cars/review/'+ variant.id
+            url    : 'api/cars/review/?variant='+ variant.id
           })
         },
 

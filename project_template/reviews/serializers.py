@@ -46,6 +46,19 @@ class CarVariantReviewSerializer(serializers.ModelSerializer):
 		return str(obj.variant.image)
 
 class CarVariantSerializer(serializers.ModelSerializer):
+	car_reviews = serializers.SerializerMethodField()
+	variant_name = serializers.SerializerMethodField()
+
 
 	class Meta:
 		model = CarVariant
+
+	def get_car_reviews(self, obj):
+		return_data = []
+		for reviews in obj.carvariantreview_set.all():
+			return_data.append(reviews.review)
+		return return_data
+
+	def get_variant_name(self, obj):
+		return "%s %s %s" %(obj.brand.name, obj.model.name, obj.name)
+

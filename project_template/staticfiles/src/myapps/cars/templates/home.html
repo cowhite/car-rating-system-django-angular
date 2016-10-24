@@ -138,9 +138,9 @@
 
         <div class="row">
             <div ng-click="vm.carReviewDialog($event, car)" class="col-md-4" ng-repeat="car in newCars">
-                <img src="static/media/{{car.image}}" width="100%">
+                <img src="{{car.image}}" width="100%">
                 <h3>{{car.variant_name}}</h3>
-                <p>{{car.review}}</p>
+                <p ng-repeat="review in car.car_reviews">{{review}}</p>
             </div>
         </div>
     </div>

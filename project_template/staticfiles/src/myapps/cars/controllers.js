@@ -21,7 +21,7 @@
     // ******************************
     // Internal methods
     // ******************************
-      carsService.getAllCars().then(function(response){
+      carsService.getAllVariants().then(function(response){
         $scope.newCars = response.data;
       }).catch(function() {
     $scope.error = 'unable to get the cars';

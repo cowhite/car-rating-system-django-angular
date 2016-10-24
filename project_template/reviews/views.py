@@ -84,10 +84,16 @@ class CarVariantView(CarVariantMixin, generics.RetrieveUpdateDestroyAPIView):
 class CarVariantsReviewView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
 	
-    queryset = CarVariantReview.objects.all()
     serializer_class = CarVariantReviewSerializer
 
-
+    def get_queryset(self, *args, **kwargs):
+        # import ipdb; ipdb.set_trace()
+        try :
+            variant_id = self.request.GET['variant']
+            return CarVariantReview.objects.filter(variant=variant_id)
+        except :
+            return CarVariantReview.objects.all()
+            
     def perform_create(self, serializer):
         user = self.request.user
         serializer.save(review_by=user)

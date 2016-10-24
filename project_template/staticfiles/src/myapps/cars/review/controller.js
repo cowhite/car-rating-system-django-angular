@@ -71,7 +71,7 @@ link : function(scope, elem, attrs) {
         }
 
 
-        function addReview() {
+      function addReview() {
         vm.showReview = true;
       }
 
